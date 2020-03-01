@@ -6,7 +6,7 @@
 
 商品类   
 ---
-年份 | 预览 | 出处 | 已拥有 |
+年份 | 预览 | 出处 | 拥有 |
 ---------|----------|---------| ---------
 2006| <img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2006/GWAVE2006.jpg" height="100"> | GWAVE 2006 2nd Strike| ○
 2006 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2006/総集編のほん.jpg" height="100" > | 夏コミ C70『らむね』| ○
@@ -31,7 +31,7 @@
 2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/bbad9a5d7fa74ef1770548ecd4ec96b8ac6c3284.jpg" height="100" > | ドラゴンエイジPure『 bee-be-beat it!』 挿絵  | 
 2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/%E9%9B%BB%E6%92%83%E8%90%8C%E7%8E%8B%EF%BC%92%E6%9C%88%E5%8F%B7%20%E3%81%8A%E3%81%A8%E3%81%AA%E3%81%AE%E8%90%8C%E7%8E%8B%E3%82%B3%E3%83%BC%E3%83%8A%E3%83%BC%20%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg" height="100" > | 電撃萌王２月号 おとなの萌王コーナー イラスト  | ○
 2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/%E5%86%AC%E3%82%B3%E3%83%9F%20%EF%BC%A373%C2%A0K-BOOKS%C2%A0%E7%91%A0%E4%B9%85%E3%81%9F%E3%82%93%E3%80%81%E3%82%81%E3%81%90%E3%81%9F%E3%82%93%20%E6%9E%95%E3%82%AB%E3%83%90%E3%83%BC%C2%A0.jpg" height="100" > | 冬コミ Ｃ73 K-BOOKS 瑠久たん、めぐたん 枕カバ | ○
-2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/71a3dd84b39430f773994a6727e2bfab7524e808.jpg" height="100" > | 2007冬コミ C73 セカンドファクトリー  インターネットラジオ『ＷｉｎｄＶｏｉｃｅ』 OPＣＤのジャケット | ○
+2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/71a3dd84b39430f773994a6727e2bfab7524e808.jpg" height="100" > | 2007冬コミ C73 セカンドファクトリー  インターネットラジオ『ＷｉｎｄＶｏｉｃｅ』 OPＣＤのジャケット | 
 2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/2007%E5%86%AC%E3%82%B3%E3%83%9F%20C73%C2%A0Nice%20boat%EF%BC%8E%C2%A0%E3%80%8CSchool%20Days%20L%C3%97H%E3%80%8D%E5%85%AC%E5%BC%8F%E3%83%95%E3%82%A1%E3%83%B3%E3%83%96%E3%83%83%E3%82%AF%20%E8%A8%80%E8%91%89%C2%A0.jpg" height="100" > | 2007冬コミ C73 Nice boat． 「School Days L×H」公式ファンブック 言葉  | ○
 2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/whirlpool%C2%A0%E3%80%8CMagusTale(%E3%83%9E%E3%82%AE%E3%82%A6%E3%82%B9%E3%83%86%E3%82%A4%E3%83%AB)%C2%A0%EF%BD%9E%E4%B8%96%E7%95%8C%E6%A8%B9%E3%81%A8%E6%81%8B%E3%81%99%E3%82%8B%E9%AD%94%E6%B3%95%E4%BD%BF%E3%81%84%EF%BD%9E%E3%80%8D%C2%A0%E3%82%B2%E3%82%B9%E3%83%88%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%E9%9B%86.jpg" height="100" > | whirlpool 「MagusTale(マギウステイル) ～世界樹と恋する魔法使い～」  | ○
 2007 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2007/%E3%83%A1%E3%82%AC%E3%83%9F%E3%83%9E%E3%82%AC%E3%82%B8%E3%83%B3%EF%BC%92%E6%9C%88%E5%8F%B7.jpg" height="100" > | １２月２７日発売のメガミマガジン２月号ガールズアヴェニュー イラスト  | ○
