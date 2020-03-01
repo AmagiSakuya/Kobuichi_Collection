@@ -6,4 +6,4 @@
 
 年份 | 预览 | 出处 | 已购买 |
 ---------|----------|---------| ---------
-2006| ![B1](./Assets/2006/GWAVE 2006 2nd Strike.png) | GWAVE 2006 2nd Strike| ○
+2006| <img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/GWAVE%202006%202nd%20Strike.png" height="100" width="100" > | GWAVE 2006 2nd Strike| ○
