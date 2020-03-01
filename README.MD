@@ -7,3 +7,6 @@
 年份 | 预览 | 出处 | 已购买 |
 ---------|----------|---------| ---------
 2006| <img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2006/GWAVE2006.jpg" height="100" > | GWAVE 2006 2nd Strike| ○
+2006 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2006/IMG_20200301_134432.jpg" height="100" > | 夏コミ C70『らむね』| ○
+2006 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2006/IMG_20200301_134432.jpg" height="100" > | 冬コミ C71『Bitter＆Sweet Chocolate』 | ○
+2006 |<img src="https://raw.githubusercontent.com/AmagiSakuya/Kobuichi_Collection/master/Assets/img/2006/とらのあな冬の大感謝祭限定トレカ.jpg" height="100" > | とらのあな 冬の大感謝祭 限定トレカ | ○
