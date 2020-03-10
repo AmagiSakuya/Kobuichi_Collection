@@ -1,0 +1,22 @@
+{
+  "name": "kobuichi_collection",
+  "version": "1.0.0",
+  "description": "昨夜丶的小舞一收藏 / こぶいち / コレクション  / こぶコレ / Kobuichi Collection",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmagiSakuya/Kobuichi_Collection.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmagiSakuya/Kobuichi_Collection/issues"
+  },
+  "homepage": "https://github.com/AmagiSakuya/Kobuichi_Collection#readme",
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  }
+}
