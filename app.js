@@ -111,7 +111,7 @@ function Analyse_MD_Output() {
             if (m_tempObj[m_data] === void 0) {
                 m_tempObj[m_data] = {};
             }
-            if(m_data_index === dataArr.length - 1){
+            if (m_data_index === dataArr.length - 1) {
                 let m_src = EncodeURIComponentPath(`${githubRepertory}/wiki/${m_pureFileName}`)
                 m_tempObj[m_data] = `https://${m_src}`;
             }
@@ -119,29 +119,53 @@ function Analyse_MD_Output() {
         });
     });
 
-    //console.log(result);
-    return CreateTocColumn(result,0);
+    let readableRes = ConverResultToReadableObject(result,0);
+    console.log(CreateTocColumn(readableRes))
+    return CreateTocColumn(readableRes);
 }
 
-function CreateTocColumn(obj,tapCount){
-    let tap= decodeURI("%20%20%20%20");
-    let res = '';
-    let m_keys = Object.keys(obj);
-    for(j=0;j<m_keys.length;j++){
-        let key = m_keys[j];
-        for(i=0;i<tapCount;i++){
-            res += tap;
-        }
-        if(typeof obj[key] === "string"){
-            res += `- [${key}](${obj[key]})
-`
-        }else{
-            res += `- ${key}
-`
-            res += CreateTocColumn(obj[key],tapCount+1);
-        }
+
+function ConverResultToReadableObject(result,childDeep) {
+    return ReadKeyOnObject(result,childDeep);
+
+    function ReadKeyOnObject(obj,childDeep) {
+        let m_keys = Object.keys(obj);
+        let res = [];
+        m_keys.map(key => {
+            if (typeof obj[key] != "string") {
+                let child = ConverResultToReadableObject(obj[key], childDeep + 1);
+                res.push({ title: key, child, childDeep });
+            } else {
+                res.push({ title: key, url: obj[key], childDeep });
+            }
+        });
+        return res;
     }
-    return res;
+
+}
+
+function CreateTocColumn(readableRes) {
+
+    return CreateMD(readableRes);
+
+    function CreateMD(res) {
+        let tap = decodeURI("%20%20%20%20");
+        let md = "";
+        res.map(item => {
+            for(i = 0;i<item.childDeep;i++){
+                md+=tap;
+            }
+            if (item.child !== void 0) {
+                md += `- ${item.title}
+`;
+                md += CreateMD(item.child);
+            } else {
+                md += `- [${item.title}](${item.url})
+`;
+            }
+        });
+        return md;
+    }
 }
 
 function GetPureFileName(filepath, fileName) {
