@@ -1,11 +1,15 @@
 const fs = require("fs");
 const fse = require("fs-extra");
 const path = require("path");
+
 const githubRepertory = "github.com/AmagiSakuya/Kobuichi_Collection";
+const branch = "develop";
+
 const tableDirRootInAsset = "img";
-const outPutDirName = ".wiki";
 const WikiRootFileName = "Home";
-const branch = "master";
+
+const outPutDirName = ".wiki";
+
 
 /**Main */
 let picBasePath = `${githubRepertory}/raw/${branch}/Assets/${tableDirRootInAsset}`;
@@ -15,6 +19,9 @@ fse.emptyDirSync(wikiOutputPath);
 let rootPath = path.resolve(__dirname, `Assets/${tableDirRootInAsset}`);
 CreateMDByDir(WikiRootFileName, rootPath);
 
+//分析output目录 生成TOC
+
+//CreateHomeMD();
 
 /**function */
 function CreateMDByDir(MDfileName, dirPath) {
@@ -26,6 +33,18 @@ function CreateMDByDir(MDfileName, dirPath) {
         if (stat.isDirectory()) m_dirs.push(fileName);
         else m_files.push(fileName);
     });
+
+    if (m_dirs.length > 0) {
+        m_dirs.map((dirName) => {
+            let m_mdfileName = WikiRootFileName === MDfileName ? `${dirName}` : `${MDfileName}#${dirName}`
+            CreateMDByDir(m_mdfileName, path.resolve(dirPath, dirName));
+        });
+    }
+
+    // if Home Don't Create
+    if (MDfileName === WikiRootFileName) {
+        return;
+    };
 
     if (m_files.length > 0) {
         //CreateMD
@@ -42,17 +61,54 @@ function CreateMDByDir(MDfileName, dirPath) {
             let m_showName = dataArr[1];
             let m_own = dataArr.length === 3 ? true : false;
             let m_src = path.join(picBasePath, dirPath.split(tableDirRootInAsset)[1], fileName);
-            let m_column = `${m_year} | <div align="center"><img src="https://${encodeURI(m_src.replace(/\\/g, "/"))}"></div> | ${m_showName} | ${m_own ? "○" : ""}
+            let m_column = `${m_year} | <div align="center"><img src="https://${EncodeURIComponentPath(m_src.replace(/\\/g, "/"))}"></div> | ${m_showName} | ${m_own ? "○" : ""}
 `;
             MDContent += m_column;
         });
-        let m_outputMDPath = path.resolve(wikiOutputPath, `${MDfileName}.MD`);
-        fs.writeFileSync(m_outputMDPath, MDContent);
-    }
 
-    if (m_dirs.length > 0) {
-        m_dirs.map((dirName) => {
-            CreateMDByDir(dirName, path.resolve(dirPath, dirName));
-        });
+        CreateMD(MDfileName, MDContent);
     }
+}
+
+function CreateHomeMD(insertMD) {
+
+    let m_homeMD = `# こぶいち收藏 
+
+    昨夜丶的（[@こぶいち](https://twitter.com/kobuichi)）收藏Wiki。你可以在->[这里](https://github.com/AmagiSakuya/Kobuichi_Collection/issues)参与讨论。
+    
+    暂不重点整理エロゲ相关（スタジオメビウス / TEAM-EXODUS/ ゆずソフト）ラノベ相关（ 緋弾 / これゾン / 記憶の森のエリス / いもうとドラゴン! / お嬢様と無人島! 葉っぱ水着パラダイス / ビンボーだってプリンセス!），由于是收图向，不会特别关心商品形式，优先画集。
+    
+    1999~2005阶段 待认真考古..
+    
+    ${insertMD}
+
+    ## 参考资料
+    
+    [こぶろぐ](http://tyatsune.blog87.fc2.com/)
+    
+    [ゆずログ: こぶいち](http://yuzu-soft.sblo.jp/category/583783-1.html)
+    
+    [缶。](http://kuronekocan.blog59.fc2.com/)
+    
+    [ゆずログ: むりりん](http://yuzu-soft.sblo.jp/category/583782-1.html)
+    
+    [ゆずログ](http://yuzu-soft.sblo.jp/)`;
+
+    CreateMD(WikiRootFileName, m_homeMD);
+}
+
+//EncodeURI路径
+function EncodeURIComponentPath(stringPath) {
+    let arr = stringPath.split("/");
+    let m_stringPath = "";
+    arr.map((pathItem, pathItemIndex) => {
+        m_stringPath += encodeURIComponent(pathItem);
+        if (pathItemIndex != arr.length - 1) m_stringPath += "/";
+    });
+    return m_stringPath;
+}
+
+function CreateMD(fileName, content) {
+    let m_outputMDPath = path.resolve(wikiOutputPath, `${fileName}.MD`);
+    fs.writeFileSync(m_outputMDPath, content);
 }
