@@ -18,10 +18,9 @@ fse.ensureDirSync(wikiOutputPath);
 fse.emptyDirSync(wikiOutputPath);
 let rootPath = path.resolve(__dirname, `Assets/${tableDirRootInAsset}`);
 CreateMDByDir(WikiRootFileName, rootPath);
-
 //分析output目录 生成TOC
-
-//CreateHomeMD();
+let toc = Analyse_MD_Output();
+CreateHomeMD(toc);
 
 /**function */
 function CreateMDByDir(MDfileName, dirPath) {
@@ -52,9 +51,7 @@ function CreateMDByDir(MDfileName, dirPath) {
 ---------|----------|---------| ---------
 `;
         m_files.map((fileName) => {
-            let m_path = path.resolve(dirPath, fileName);
-            let m_ext = path.extname(m_path);
-            let m_pureFileName = path.basename(m_path, m_ext);
+            let m_pureFileName = GetPureFileName(dirPath, fileName)
             let dataArr = m_pureFileName.split("#");
             if (dataArr.length < 2 || dataArr.length > 3) return;
             let m_year = dataArr[0];
@@ -74,27 +71,83 @@ function CreateHomeMD(insertMD) {
 
     let m_homeMD = `# こぶいち收藏 
 
-    昨夜丶的（[@こぶいち](https://twitter.com/kobuichi)）收藏Wiki。你可以在->[这里](https://github.com/AmagiSakuya/Kobuichi_Collection/issues)参与讨论。
+昨夜丶的（[@こぶいち](https://twitter.com/kobuichi)）收藏Wiki。你可以在->[这里](https://github.com/AmagiSakuya/Kobuichi_Collection/issues)参与讨论。
     
-    暂不重点整理エロゲ相关（スタジオメビウス / TEAM-EXODUS/ ゆずソフト）ラノベ相关（ 緋弾 / これゾン / 記憶の森のエリス / いもうとドラゴン! / お嬢様と無人島! 葉っぱ水着パラダイス / ビンボーだってプリンセス!），由于是收图向，不会特别关心商品形式，优先画集。
+暂不重点整理エロゲ相关（スタジオメビウス / TEAM-EXODUS/ ゆずソフト）ラノベ相关（ 緋弾 / これゾン / 記憶の森のエリス / いもうとドラゴン! / お嬢様と無人島! 葉っぱ水着パラダイス / ビンボーだってプリンセス!），由于是收图向，不会特别关心商品形式，优先画集。
     
-    1999~2005阶段 待认真考古..
-    
-    ${insertMD}
+1999~2005阶段 待认真考古..
 
-    ## 参考资料
+---
+
+## 目录
+
+${insertMD}
+
+---
+
+## 参考资料
     
-    [こぶろぐ](http://tyatsune.blog87.fc2.com/)
+[こぶろぐ](http://tyatsune.blog87.fc2.com/)
     
-    [ゆずログ: こぶいち](http://yuzu-soft.sblo.jp/category/583783-1.html)
+[ゆずログ: こぶいち](http://yuzu-soft.sblo.jp/category/583783-1.html)
     
-    [缶。](http://kuronekocan.blog59.fc2.com/)
+[缶。](http://kuronekocan.blog59.fc2.com/)
     
-    [ゆずログ: むりりん](http://yuzu-soft.sblo.jp/category/583782-1.html)
+[ゆずログ: むりりん](http://yuzu-soft.sblo.jp/category/583782-1.html)
     
-    [ゆずログ](http://yuzu-soft.sblo.jp/)`;
+[ゆずログ](http://yuzu-soft.sblo.jp/)`;
 
     CreateMD(WikiRootFileName, m_homeMD);
+}
+
+//Analyse MD Output
+function Analyse_MD_Output() {
+    let result = {};
+    fs.readdirSync(wikiOutputPath).map((fileName) => {
+        let m_tempObj = result;
+        let m_pureFileName = GetPureFileName(wikiOutputPath, fileName)
+        let dataArr = m_pureFileName.split("#");
+        dataArr.map((m_data, m_data_index) => {
+            if (m_tempObj[m_data] === void 0) {
+                m_tempObj[m_data] = {};
+            }
+            if(m_data_index === dataArr.length - 1){
+                let m_src = EncodeURIComponentPath(`${githubRepertory}/wiki/${m_pureFileName}`)
+                m_tempObj[m_data] = `https://${m_src}`;
+            }
+            m_tempObj = m_tempObj[m_data];
+        });
+    });
+
+    //console.log(result);
+    return CreateTocColumn(result,0);
+}
+
+function CreateTocColumn(obj,tapCount){
+    let tap= decodeURI("%20%20%20%20");
+    let res = '';
+    let m_keys = Object.keys(obj);
+    for(j=0;j<m_keys.length;j++){
+        let key = m_keys[j];
+        for(i=0;i<tapCount;i++){
+            res += tap;
+        }
+        if(typeof obj[key] === "string"){
+            res += `- [${key}](${obj[key]})
+`
+        }else{
+            res += `- ${key}
+`
+            res += CreateTocColumn(obj[key],tapCount+1);
+        }
+    }
+    return res;
+}
+
+function GetPureFileName(filepath, fileName) {
+    let m_path = path.resolve(filepath, fileName)
+    let m_ext = path.extname(m_path);
+    return path.basename(m_path, m_ext);
 }
 
 //EncodeURI路径
