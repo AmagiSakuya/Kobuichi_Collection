@@ -120,7 +120,6 @@ function Analyse_MD_Output() {
     });
 
     let readableRes = ConverResultToReadableObject(result,0);
-    console.log(CreateTocColumn(readableRes))
     return CreateTocColumn(readableRes);
 }
 
