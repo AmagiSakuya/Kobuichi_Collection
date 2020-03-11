@@ -55,10 +55,18 @@ function CreateMDByDir(MDfileName, dirPath) {
             let dataArr = m_pureFileName.split("#");
             if (dataArr.length < 2 || dataArr.length > 3) return;
             let m_year = dataArr[0];
-            let m_showName = dataArr[1];
+            let m_showName;
+            if(dataArr.length === 2){
+                m_showName = dataArr[1];
+            }else if(dataArr.length === 3 && dataArr[1] !== ''){
+                m_showName = dataArr[1];
+            }else if(dataArr.length === 3 && dataArr[2] !== ''){
+                m_showName = dataArr[2];
+            }
             let m_own = dataArr.length === 3 ? true : false;
             let m_src = path.join(picBasePath, dirPath.split(tableDirRootInAsset)[1], fileName);
-            let m_column = `${m_year} | <div align="center"><img src="https://${EncodeURIComponentPath(m_src.replace(/\\/g, "/"))}"></div> | ${m_showName} | ${m_own ? "○" : ""}
+            let m_httpsSrc = `https://${EncodeURIComponentPath(m_src.replace(/\\/g, "/"))}`;
+            let m_column = `${m_year} | <div align="center"><a href="${m_httpsSrc}" target="_blank"><img src="${m_httpsSrc}"></a></div> | ${m_showName} | ${m_own ? "○" : ""}
 `;
             MDContent += m_column;
         });
@@ -145,9 +153,9 @@ function ConverResultToReadableObject(result,childDeep) {
 
 function CreateTocColumn(readableRes) {
 
-    return CreateMD(readableRes);
+    return CreateTOCMD(readableRes);
 
-    function CreateMD(res) {
+    function CreateTOCMD(res) {
         let tap = decodeURI("%20%20%20%20");
         let md = "";
         res.map(item => {
@@ -157,7 +165,7 @@ function CreateTocColumn(readableRes) {
             if (item.child !== void 0) {
                 md += `- ${item.title}
 `;
-                md += CreateMD(item.child);
+                md += CreateTOCMD(item.child);
             } else {
                 md += `- [${item.title}](${item.url})
 `;
